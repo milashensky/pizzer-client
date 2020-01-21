@@ -8,7 +8,7 @@ import 'styles/cart-link.css'
 function AddBtn (props) {
     const product = props.product
     return (
-        <a onClick={() => props.addToCart(product.id, 1)}>
+        <a onClick={() => props.addToCart(product.id, 1)} className="btn">
             Add to cart
         </a>
     )
@@ -17,7 +17,5 @@ AddBtn.propTypes = {
     product: PropTypes.object
 }
 
-const m = () => ({
-})
 
-export default connect(m, { addToCart: addToCartCreator })(AddBtn)
+export default connect(() => ({}), { addToCart: addToCartCreator })(AddBtn)

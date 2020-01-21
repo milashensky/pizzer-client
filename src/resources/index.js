@@ -6,7 +6,7 @@ export default {
     Context: {
         get(data) {
             return axios.get(apiUrl + 'common/context', data)
-        },
+        }
     },
     Login: {
         post(data) {
@@ -27,6 +27,22 @@ export default {
         get(data) {
             const slug = data && data.slug ? data.slug + '/' : ''
             return axios.get(apiUrl + 'shop/product/' + slug)
+        }
+    },
+    Customer: {
+        get() {
+            return axios.get(apiUrl + 'shop/customer/')
         },
+        post() {
+            return axios.post(apiUrl + 'shop/customer/')
+        }
+    },
+    Order: {
+        get() {
+            return axios.get(apiUrl + 'shop/order/')
+        },
+        post() {
+            return axios.post(apiUrl + 'shop/order/')
+        }
     }
 }

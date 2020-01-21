@@ -19,14 +19,31 @@ form > * {
     box-shadow: 0px 0px 20px 5px var(--shadow);
 }
 
-input {
+textarea {
+    width: 100%!important;
+}
+textarea,
+input:not([type="radio"]) {
     padding: 10px 15px;
     border-radius: 5px;
     border: none;
     box-shadow: 0px 0px 5px 0px var(--shadow);
+    background-color: var(--bg);
+    color: var(--text);
+}
+textarea.invalid,
+input.invalid:not([type="radio"]) {
+    box-shadow: 0px 0px 5px 0px var(--error);
+}
+*:focus {
+    outline-color: var(--main);
+}
+*::placeholder {
+    color: var(--white-active);
 }
 .btn,
 button {
+    text-transform: capitalize;
     border-radius: 15px;
     border: none;
     box-shadow: 0px 0px 5px 0px var(--shadow);
@@ -53,4 +70,91 @@ button:hover {
 }
 .error {
     color: red;
+}
+
+.checkmark {
+    position: absolute;
+    bottom: 2px;
+    left: 0;
+    height: 1em;
+    width: 1em;
+    background-color: var(--white);
+    border: solid 1px var(--main);
+    border-radius: 2px;
+}
+
+input[type="radio"]~.checkmark {
+    border-radius: 50%;
+}
+
+.ckeckcontainer:hover input~.checkmark {
+    background-color: var(--white);
+}
+
+.ckeckcontainer input:checked~.checkmark {
+    background-color: var(--main);
+    border: none;
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.ckeckcontainer input:checked~.checkmark:after {
+    display: block;
+}
+
+.ckeckcontainer .checkmark:after {
+    content: '';
+    width: 5px;
+    left: 9px;
+    top: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.ckeckcontainer input[type="radio"]~.checkmark:after {
+    border-radius: 50%;
+    width: 0px;
+    height: 0px;
+    border-width: 3px;
+    left: calc(50%);
+    top: calc(50%);
+    transform: translate(-50%, -50%);
+}
+
+.ckeckcontainer {
+    display: block;
+    position: relative;
+    padding-left: 25px;
+    margin-right: 20px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.ckeckcontainer input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+.form-group {
+    display: flex;
+    flex-flow: column;
+    width: 100%;
+}
+.form-group .field-error {
+    font-size: 0.8em;
+    color: var(--error);
 }

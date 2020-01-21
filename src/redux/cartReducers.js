@@ -6,7 +6,7 @@ export const addToCart = (productId, quantity) => ({type: CART_ADD, productId, q
 
 function cleanProducts (products) {
     // delete empty
-    return products.filter(item => item[1])
+    return products.filter(item => item[1] > 0)
 }
 
 export function loadSavedProducts () {

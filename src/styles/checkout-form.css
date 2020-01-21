@@ -1,0 +1,17 @@
+.checkout-form > div,
+.checkout-form {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+.checkout-form .form-group .field-error,
+.checkout-form input,
+.checkout-form textarea {
+    margin: 5px;
+}
+
+@media (max-width: 480px) {
+    .checkout-form .inline {
+        flex-flow: row wrap;
+    }
+}

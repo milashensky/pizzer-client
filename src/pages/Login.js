@@ -3,8 +3,6 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { getLoginThunkCreator } from '@/redux/contextReducers'
 
-import 'styles/forms.css'
-
 
 function Login (props) {
     let data = {
@@ -27,9 +25,9 @@ function Login (props) {
                 )}
                 <input placeholder="email" name="email" type="email" ref={(e) => data.email = e }/>
                 <input placeholder="password" name="password" type="password" ref={(e) => data.password = e }/>
-                <button>Sing in</button>
+                <button>Sign in</button>
             </form>
-            <Link to="/registration" className="login-link">Sing up</Link>
+            <Link to="/registration" className="login-link">Sign up</Link>
         </div>
     )
 }

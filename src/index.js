@@ -5,6 +5,8 @@ import { Provider } from 'react-redux'
 import App from './App'
 import reduxStore from '@/redux'
 import './styles/index.css'
+import 'styles/forms.css'
+
 
 
 ReactDOM.render(

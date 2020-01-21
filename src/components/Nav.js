@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import 'styles/nav.css'
-import CartBtn from 'components/NavCartBtn'
+import CartBtn from 'components/Cart/NavBtn'
 
 
 function Nav (props) {

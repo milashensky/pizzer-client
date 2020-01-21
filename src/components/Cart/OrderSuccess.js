@@ -1,11 +1,9 @@
 import React from 'react'
 
-
-function Cart () {
+export default function OrderSuccess () {
     return (
         <div>
+            Success!
         </div>
     )
 }
-
-export default Cart
