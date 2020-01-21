@@ -18,8 +18,8 @@ body {
     --white-active: #ececec;
     --text: #4d4e50;
     --overlay: #b5b5b56b;
-    --main: #3890de;
-    --main-hover: #3383ca;
+    --main: #4385f5;
+    --main-hovered: #2c6ad4;;
 }
 #app {
     min-height: 100vh;

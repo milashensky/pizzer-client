@@ -2,7 +2,10 @@ import React, {Component} from 'react'
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 
+import { getProductsThunkCreator } from '@/redux/productsReducers'
 import { getContextThunkCreator } from '@/redux/contextReducers'
+import { loadCreator as loadCartCreator } from '@/redux/cartReducers'
+
 import Layout from 'pages/Layout'
 import Login from 'pages/Login'
 import Logout from 'pages/Logout'
@@ -12,7 +15,9 @@ import Loader from 'components/Loader'
 
 class App extends Component {
     componentDidMount () {
+        this.props.fetchProducts()
         this.props.getContext()
+        this.props.loadCart()
     }
     render () {
         return (
@@ -53,4 +58,4 @@ const mapStateToProps = (state) => {
         fetched: state.context.status
     }
 }
-export default connect(mapStateToProps, {getContext: getContextThunkCreator})(App)
+export default connect(mapStateToProps, {getContext: getContextThunkCreator, loadCart: loadCartCreator, fetchProducts: getProductsThunkCreator})(App)

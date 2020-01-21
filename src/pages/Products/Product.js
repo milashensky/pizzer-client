@@ -5,6 +5,7 @@ import { withRouter } from 'react-router-dom'
 import Details from 'components/Products/Details'
 
 
+
 class Product extends React.Component {
     componentDidMount () {
         if (!this.props.product || this.props.product.slug !== this.props.match.params.slug)

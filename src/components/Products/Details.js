@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { Carousel } from 'react-responsive-carousel'
 import { buildProductPrice } from '@/utils/price'
 import Loader from 'components/Loader'
+import AddToCart from 'components/Products/CartAddBtn'
 
 import 'styles/product-details.css'
 import 'react-responsive-carousel/lib/styles/carousel.min.css'
@@ -34,6 +35,7 @@ export default function Details (props) {
                 <p>{product.name}</p>
                 <p>{product.description}</p>
                 <p>{buildProductPrice(product)}</p>
+                <AddToCart product={product}/>
             </div>
         </div>
     )
