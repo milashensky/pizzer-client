@@ -1,0 +1,10 @@
+.product-details {
+    /* width: 100vw; */
+}
+.product-details .preview {
+    height: 70vh;
+}
+.product-details .preview > div > div,
+.product-details .preview > div {
+    height: 100%;
+}

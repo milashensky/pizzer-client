@@ -1,0 +1,56 @@
+.registration,
+.login,
+form label,
+form {
+    display: flex;
+    flex-flow: column nowrap;
+}
+form > * {
+    margin-top: 15px;
+}
+.registration,
+.login {
+    justify-content: center;
+    align-items: center;
+    padding: 50px 20px;
+    margin: 20px auto;
+    max-width: 550px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 20px 5px var(--shadow);
+}
+
+input {
+    padding: 10px 15px;
+    border-radius: 5px;
+    border: none;
+    box-shadow: 0px 0px 5px 0px var(--shadow);
+}
+.btn,
+button {
+    border-radius: 15px;
+    border: none;
+    box-shadow: 0px 0px 5px 0px var(--shadow);
+    background-color: var(--main);
+    color: var(--white);
+    padding: 10px 15px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    outline: none;
+    transition: all .3s ease;
+}
+.btn:hover,
+button:hover {
+    background-color: var(--main-hovered);
+}
+
+.login-link {
+    margin: 20px 0px;
+    font-size: 14px;
+    text-decoration: none;
+    color: var(--main);
+}
+.error {
+    color: red;
+}
