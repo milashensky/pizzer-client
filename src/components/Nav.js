@@ -1,11 +1,15 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import 'styles/nav.css'
+import Login from 'pages/Login'
+import Modal from 'components/Modal'
 import CartBtn from 'components/Cart/NavBtn'
 import CurrencySelect from 'components/CurrencySelect'
+import 'styles/nav.css'
 
 
 function Nav (props) {
+    let [modal, setModal] = useState(false)
+
     function backdrop () {
         document.removeEventListener('click', backdrop)
         while (document.toToggle && document.toToggle.length) {
@@ -27,7 +31,17 @@ function Nav (props) {
         }
     }
     let links = !props.user ?
-        [<li key="login"><Link to="/login">Login</Link></li>]
+        [
+            <li className="d-mobile" key='loginm'>
+                <Link to="/login">Login</Link>
+            </li>,
+            <li className="d-desktop" key='logind'>
+                <a onClick={() => setModal(true)}>Login</a>
+                <Modal isOpen={!props.user && modal} close={() => setModal(false)}>
+                    <Login/>
+                </Modal>
+            </li>
+        ]
         :[
             <li key="profile">
                 <Link to="/profile">Profile</Link>

@@ -21,11 +21,6 @@ function Form (props) {
     let errors = renderErrors({...formErrors, ...props.errors})
     return (
         <form onSubmit={submit} ref={e => form = e}>
-            {
-                props.closeFunc ?
-                    <a onClick={props.closeFunc} className="close"/>
-                    :<span/>
-            }
             <h3>Password settings</h3>
             {
                 !props.confirmed ?
