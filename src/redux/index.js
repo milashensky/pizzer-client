@@ -5,6 +5,7 @@ import context from './contextReducers'
 import cart from './cartReducers'
 import order from './orderReducers'
 import products from './productsReducers'
+import profile from './profileReducers'
 
 
 const store = createStore(
@@ -12,6 +13,7 @@ const store = createStore(
         context,
         cart,
         order,
+        profile,
         products
     }),
     applyMiddleware(thunkMiddleware),

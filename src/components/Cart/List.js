@@ -6,7 +6,7 @@ import { convertProductPrice, buildPrice, getDeliveryPrice, buildDeliveryPrice }
 import { updateCreator } from '@/redux/cartReducers'
 
 
-function List(props) {
+function List (props) {
     let location = useLocation()
     let count = props.cartProducts.reduce((s, item) => s + item[1] - 0, 0)
     let totalPrice = 0
@@ -58,8 +58,8 @@ function List(props) {
                                 <h4 className="total_price">{ buildPrice(totalPrice + getDeliveryPrice(totalPrice)) }</h4>
                             </div>
                             <Link to='/cart' className="btn">Checkout</Link>
-                        </div>:
-                        <div>
+                        </div>
+                        :<div>
                             <span className="total_item">{count} items</span>
                         </div>
                 }

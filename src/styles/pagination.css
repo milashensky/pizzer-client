@@ -1,0 +1,29 @@
+.pagination {
+    display: flex;
+    flex-flow: row nowrap;
+}
+.pagination .dots,
+.pagination  .link {
+    padding: 7px 14px;
+    margin-right: 10px;
+    box-shadow: 0 0 10px 0px var(--main);
+    color: var(--main);
+    background-color: white;
+    cursor: pointer;
+    border: 0;
+    outline: 0;
+}
+.pagination .link {
+    cursor: pointer;
+}
+.pagination .link.active,
+.pagination .link:hover {
+    background-color: var(--main);
+    color: var(--white);
+}
+.pagination .info {
+    margin-left: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

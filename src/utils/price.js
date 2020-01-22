@@ -18,6 +18,13 @@ export function getSelectedCurrency () {
 }
 
 
+export function convertPriceTo(price, fromCurrencyId, toCurrencyId) {
+    const fromCurrency = getCurrency(fromCurrencyId)
+    const toCurrency = getCurrency(toCurrencyId)
+    return Math.ceil(parseInt(price) * parseFloat(fromCurrency.rate) / parseFloat(toCurrency.rate))
+}
+
+
 export function convertPrice (price, fromCurrencyId) {
     const fromCurrency = getCurrency(fromCurrencyId)
     const toCurrency = getSelectedCurrency()
@@ -32,6 +39,12 @@ export function convertProductPrice (product) {
 
 export function buildPrice (price) {
     const currency = getSelectedCurrency()
+    return currency.symbol + price / currency.precision
+}
+
+
+export function buildPriceCurrency (price, currencyId) {
+    const currency = getCurrency(currencyId)
     return currency.symbol + price / currency.precision
 }
 

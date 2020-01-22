@@ -11,7 +11,7 @@ export const loginError = (errors) => ({type: LOGIN_FAIL, errors})
 export const updateCurrency = (currencies) => ({type: CURRENCY_FETCHED, currencies})
 
 
-function fetchContext (dispatch) {
+export function fetchContext (dispatch) {
     resource.Context.get().then(resp => {
         dispatch(updateContext(resp.data))
     })
@@ -60,7 +60,7 @@ export const updateCurrencyCreator = (data) => {
 }
 
 
-export default function contextReducer(state = {status: 0, id: null}, action) {
+export default function contextReducer(state = {status: 0, id: null, confirmed: false}, action) {
     let currency = DEFAULT_CURRENCY_ID
     switch (action.type) {
     case CONTEXT_UPDATED:
@@ -72,6 +72,7 @@ export default function contextReducer(state = {status: 0, id: null}, action) {
             ...state,
             status: 1,
             currency: currency,
+            confirmed: action.data.confirmed,
             id: action.data && action.data.id
         }
     case LOGIN_FAIL:

@@ -1,0 +1,22 @@
+.order-item {
+    display: flex;
+    padding: 20px;
+    margin: 10px 0px 20px;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    width: 100%;
+    border-bottom: 1px solid var(--white-active)
+}
+
+.order-item .order-products .subtotal,
+.order-item .order-products .delivery-price,
+.order-item .order-products .price {
+    font-size: 12px;
+}
+.order-item .order-products .subtotal {
+    padding-top: 10px;
+    border-top: 1px solid var(--white-active)
+}
+.order-item .order-products .total-price {
+    color: var(--main)
+}

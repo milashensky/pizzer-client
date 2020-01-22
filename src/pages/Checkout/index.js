@@ -37,7 +37,7 @@ class Checkout extends React.Component {
         if (!this.props.cartProducts.length)
             return (<EmptyCart/>)
         return (
-            <div className={`page-checkout step-${this.state.step}`}>
+            <div className={`page-checkout main step-${this.state.step}`}>
                 <div className="form-container">
                     <h1>Checkout</h1>
                     <CheckoutForm products={this.props.cartProducts}/>
@@ -53,6 +53,7 @@ class Checkout extends React.Component {
         )
     }
 }
+
 
 const mapStoreToProps = (state) => ({
     status: state.order.status,

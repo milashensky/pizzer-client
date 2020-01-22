@@ -26,24 +26,29 @@ function Nav (props) {
             document.addEventListener('click', backdrop)
         }
     }
+    let links = !props.user ?
+        [<li key="login"><Link to="/login">Login</Link></li>]
+        :[
+            <li key="profile">
+                <Link to="/profile">Profile</Link>
+            </li>,
+            <li key="orders">
+                <Link to="/orders">Orders</Link>
+            </li>,
+            <li key="logout">
+                <Link to="/logout">Logout</Link>
+            </li>
+        ]
     return (
         <div className="nav">
-            <Link className="home" to="/">Home</Link>
+            <Link className="brand" to="/">Home</Link>
             <a className="burger-btn" onClick={toggle}>
                 <span/>
             </a>
             <ul className="nav-links">
                 <CurrencySelect/>
                 <CartBtn/>
-                {(
-                    props.user ?
-                        <li>
-                            <Link to="/logout">Logout</Link>
-                        </li>:
-                        <li>
-                            <Link to="/login">Login</Link>
-                        </li>
-                )}
+                {links}
             </ul>
         </div>
     )

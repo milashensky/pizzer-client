@@ -1,7 +1,4 @@
 .page-checkout {
-    margin: 80px 10px 0;
-}
-.page-checkout {
     display: flex;
     flex-flow: row nowrap;
 }
@@ -144,6 +141,10 @@
     color: var(--main);
     background-color: var(--white);
 }
+.page-checkout .btn-mobile-back:hover {
+    color: var(--white);
+    background-color: var(--main);
+}
 .page-checkout .btn-mobile-back,
 .page-checkout .btn-mobile-confirm {
     display: none;
@@ -155,10 +156,6 @@
     transition: all .3s ease;
 }
 @media (max-width: 825px) {
-    .page-checkout {
-        margin: 20px 10px 0;
-        flex-flow: column;
-    }
     .page-checkout .btn-mobile-back,
     .page-checkout .btn-mobile-confirm {
         display: flex;
