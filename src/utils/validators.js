@@ -2,7 +2,7 @@ import React from 'react'
 
 
 export function validatePhone(value) {
-    if (/^\+?([0-9]{2})\)?[-. ]?([0-9]{4})[-. ]?([0-9]{4})$/.test(value))
+    if (/^\+?[-\s]?\(?[0-9]{1,2}\)?[-\s]?\(?([0-9]{3,4})\)?[-.\s]?([0-9]{2,3})[-.\s]?([0-9]{2,4})[-.\s]?([0-9]{2})?$/.test(value))
         return
     else
         return 'Invalid phone format'
@@ -33,8 +33,19 @@ export function validateOrder(field, value) {
         errors.push(validateEmail(value))
         break
     }
-    errors = errors.filter(err => err).map((err, i) => (<p key={i} className="field-error">{err}</p>))
+    errors = errors.filter(err => err)
     if (errors.length)
         out.push(errors)
     return out
+}
+
+export function renderErrors(errors) {
+    return Object.fromEntries(Object.entries(errors).map(([field, errs]) => {
+        if (Array.isArray(errs))
+            return [
+                field,
+                errs.map((err, i) => (<p key={i} className="field-error">{err}</p>))
+            ]
+        return [field, errs]
+    }))
 }

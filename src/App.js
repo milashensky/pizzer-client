@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-d
 import { connect } from 'react-redux'
 
 import { getProductsThunkCreator } from '@/redux/productsReducers'
-import { getContextThunkCreator } from '@/redux/contextReducers'
+import { getContextThunkCreator, getCurrenciesThunkCreator } from '@/redux/contextReducers'
 import { loadCreator as loadCartCreator } from '@/redux/cartReducers'
 
 import Layout from 'pages/Layout'
@@ -18,13 +18,14 @@ class App extends Component {
         this.props.fetchProducts()
         this.props.getContext()
         this.props.loadCart()
+        this.props.fetchCurrencies()
     }
     render () {
         return (
             <Router>
                 <div className="App">
                     {
-                        this.props.fetched ?
+                        this.props.fetched && this.props.currencies && this.props.currencies.length ?
                             <Switch>
                                 <Route path="/login" exact
                                     render={props => !this.props.user_id ?
@@ -55,7 +56,8 @@ class App extends Component {
 const mapStateToProps = (state) => {
     return {
         user_id: state.context.id,
+        currencies: state.context.currencies,
         fetched: state.context.status
     }
 }
-export default connect(mapStateToProps, {getContext: getContextThunkCreator, loadCart: loadCartCreator, fetchProducts: getProductsThunkCreator})(App)
+export default connect(mapStateToProps, {getContext: getContextThunkCreator, loadCart: loadCartCreator, fetchProducts: getProductsThunkCreator, fetchCurrencies: getCurrenciesThunkCreator})(App)

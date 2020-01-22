@@ -2,6 +2,7 @@ import React from 'react'
 import { useLocation } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
+import { convertProductPrice, buildPrice, getDeliveryPrice, buildDeliveryPrice } from '@/utils/price'
 import { updateCreator } from '@/redux/cartReducers'
 
 
@@ -10,13 +11,17 @@ function List(props) {
     let count = props.cartProducts.reduce((s, item) => s + item[1] - 0, 0)
     let totalPrice = 0
     function buildProducts () {
-        const products = props.cartProducts.map(product => ({
-            id: 0,
-            price: 0,
-            ...props.productsList.find(x => x.id == product[0]),
-            quantity: product[1] - 0
-        })).filter(x => x.id > 0)
-        totalPrice = products.reduce((sum, item) => sum + item.price * item.quantity, 0)
+        const products = props.cartProducts.map(_product => {
+            const product = props.productsList.find(x => x.id == _product[0])
+            if (!product)
+                return {id: 0}
+            return {
+                ...product,
+                quantity: _product[1] - 0,
+                convertedPrice: convertProductPrice(product)
+            }
+        }).filter(x => x.id > 0)
+        totalPrice = products.reduce((sum, item) => sum + item.convertedPrice * item.quantity, 0)
         return products
     }
     function removeProduct (e, productId) {
@@ -26,7 +31,7 @@ function List(props) {
         return 0
     }
     return (
-        <div className={props.className + (location.pathname.match('checkout') ? ' checkout-page-active' : '') }>
+        <div className={props.className + (location.pathname == '/cart' ? ' checkout-page-active' : '') }>
             <ul className="media-list">
                 {
                     buildProducts().map(product => (
@@ -35,7 +40,7 @@ function List(props) {
                             <div className="media-body">
                                 <h4 className="media-heading">{product.name}</h4>
                                 <span className="quantity">{product.quantity}</span>
-                                <span className="price">{product.quantity * product.price}</span>
+                                <span className="price">{buildPrice(product.quantity * product.convertedPrice)}</span>
                                 <button type="button" className="close" onClick={(e) => removeProduct(e, product.id)}/>
                             </div>
                         </Link>
@@ -43,11 +48,21 @@ function List(props) {
                 }
             </ul>
             <div className="total">
-                <div>
-                    <h4 className="total_price">{ totalPrice }</h4>
-                    <span className="total_item">{count} items</span>
-                </div>
-                <Link to='/checkout' className="btn">Checkout</Link>
+                {
+                    count ?
+                        <div>
+                            <div>
+                                <span className="total_item">{count} items</span>
+                                <p className="subtotal">{ buildPrice(totalPrice) }</p>
+                                <p className="delivery">Delivery: { buildDeliveryPrice(totalPrice) }</p>
+                                <h4 className="total_price">{ buildPrice(totalPrice + getDeliveryPrice(totalPrice)) }</h4>
+                            </div>
+                            <Link to='/cart' className="btn">Checkout</Link>
+                        </div>:
+                        <div>
+                            <span className="total_item">{count} items</span>
+                        </div>
+                }
             </div>
         </div>
     )
@@ -57,6 +72,7 @@ function List(props) {
 const mapStateToProps = (state) => ({
     productsList: state.products.products || [],
     cartProducts: state.cart.products,
+    currency: state.context.currency,
     cartUpdated: state.cart.updated
 })
 

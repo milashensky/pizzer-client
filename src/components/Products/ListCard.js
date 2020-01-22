@@ -1,10 +1,12 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { buildProductPrice } from '@/utils/price'
 import 'styles/product-list-card.css'
 
-export default function Card (props) {
+
+function Card (props) {
     const product = props.product
     return (
         <Link to={`/products/${product.slug}`} className="card">
@@ -20,3 +22,9 @@ export default function Card (props) {
 Card.propTypes = {
     product: PropTypes.object
 }
+
+
+const mapStateToProps = (state) => ({
+    currency: state.context.currency
+})
+export default connect(mapStateToProps)(Card)

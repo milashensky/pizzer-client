@@ -17,7 +17,7 @@ function Layout (props) {
                 <Route path="/products/:slug">
                     <Product/>
                 </Route>
-                <Route path="/checkout">
+                <Route path="/cart">
                     <Checkout/>
                 </Route>
                 <Redirect from='*' to='/' />

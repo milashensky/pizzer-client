@@ -117,10 +117,11 @@
     background-size: cover;
 }
 
-.page-checkout .checkout-list  .total .total_price {
+.page-checkout .checkout-list .total .total_price {
     margin-top: 0;
     color: var(--main);
     font-weight: 600;
+    font-size: 1.2em;
 }
 
 .page-checkout .checkout-list  .total {
@@ -155,6 +156,7 @@
 }
 @media (max-width: 825px) {
     .page-checkout {
+        margin: 20px 10px 0;
         flex-flow: column;
     }
     .page-checkout .btn-mobile-back,

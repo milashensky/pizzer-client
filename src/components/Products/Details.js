@@ -58,5 +58,6 @@ Details.propTypes = {
 
 const mapStateToProps = (state) => ({
     product: state.products.product,
+    currency: state.context.currency
 })
 export default connect(mapStateToProps, {fetch: getProductsThunkCreator})(Details)

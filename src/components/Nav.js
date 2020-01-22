@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import 'styles/nav.css'
 import CartBtn from 'components/Cart/NavBtn'
+import CurrencySelect from 'components/CurrencySelect'
 
 
 function Nav (props) {
@@ -32,6 +33,7 @@ function Nav (props) {
                 <span/>
             </a>
             <ul className="nav-links">
+                <CurrencySelect/>
                 <CartBtn/>
                 {(
                     props.user ?

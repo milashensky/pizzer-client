@@ -1,11 +1,13 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { validateOrder } from '@/utils/validators'
+import { DEFAULT_CURRENCY_ID } from '@/redux/contextReducers'
+import { validateOrder, renderErrors } from '@/utils/validators'
 import { submitOrderThunkCreator, clearOrderStatus } from '@/redux/orderReducers'
 import 'styles/checkout-form.css'
 
 
-const fields = ['name', 'email', 'phone', 'address', 'house', 'appartaments', 'details', 'payment']
+const fields = ['name', 'email', 'phone', 'address', 'house', 'appartaments', 'details', 'payment_method']
 
 class CheckoutForm extends React.Component {
     constructor(props) {
@@ -27,11 +29,11 @@ class CheckoutForm extends React.Component {
             ...this.state,
             errors
         })
-        if (!Object.values(errors).length)
-            this.props.submitOrder(form)
+        if (!Object.values(errors).filter(x => x).length)
+            this.props.submitOrder({...form, products: this.props.products, currency: this.props.currency || DEFAULT_CURRENCY_ID})
     }
     render() {
-        const errors = this.state.errors
+        const errors = renderErrors({...this.state.errors, ...this.props.errors})
         return (
             <form onSubmit={this.submit.bind(this)} className="checkout-form">
                 <div>
@@ -79,17 +81,17 @@ class CheckoutForm extends React.Component {
                     <h3>Payment</h3>
                     <div className="inline">
                         <label htmlFor="payment-card" className="ckeckcontainer">
-                            <input type="radio" id="payment-card" name="payment" value="0"/>
+                            <input type="radio" id="payment-card" name="payment_method" value="0"/>
                             <span className="checkmark"/>
                             Pay with card to courier
                         </label>
                         <label htmlFor="payment-cash" className="ckeckcontainer">
-                            <input type="radio" id="payment-cash" name="payment" value="1"/>
+                            <input type="radio" id="payment-cash" name="payment_method" value="1"/>
                             <span className="checkmark"/>
                             Pay with cash to courier
                         </label>
                     </div>
-                    {errors.payment}
+                    {errors.payment_method}
                 </div>
                 <button type="submit" className="btn">Checkout</button>
             </form>
@@ -97,7 +99,13 @@ class CheckoutForm extends React.Component {
     }
 }
 
+CheckoutForm.propTypes = {
+    products: PropTypes.array
+}
+
+
 const mapStoreToProps = (state) => ({
+    currency: state.context.currency,
     errors: state.order.errors
 })
 export default connect (mapStoreToProps, {submitOrder: submitOrderThunkCreator, clearOrderStatus})(CheckoutForm)

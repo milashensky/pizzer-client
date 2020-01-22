@@ -152,14 +152,18 @@
     padding: 20px 40px;
     text-transform: capitalize;
     display: flex;
-    justify-content: space-between;
+    flex-flow: column;
 }
 
+.cart-link .cart-dropdown .total .subtotal,
+.cart-link .cart-dropdown .total .delivery,
 .cart-link .cart-dropdown .total .total_item {
     font-size: 12px;
     color: var(--text);
 }
-
+.cart-link .cart-dropdown .total a.btn {
+    padding: 10px 15px;
+}
 .cart-link .cart-dropdown .total a.btn:hover {
     background-color: var(--main-hovered);
     border-color: var(--main-hovered);

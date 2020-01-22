@@ -1,25 +1,24 @@
 import resource from '@/resources'
 
+export const DEFAULT_CURRENCY_ID = 840
 export const IS_CONTEXT_FETCHING = 'IS_CONTEXT_FETCHING'
 export const CONTEXT_UPDATED = 'CONTEXT_UPDATED'
 export const LOGIN_FAIL = 'LOGIN_FAIL'
+export const CURRENCY_FETCHED = 'CURRENCY_FETCHED'
 
-export const toggleContextFetch = (status) => ({type: IS_CONTEXT_FETCHING, fetching: status})
 export const updateContext = (data) => ({type: CONTEXT_UPDATED, data})
 export const loginError = (errors) => ({type: LOGIN_FAIL, errors})
+export const updateCurrency = (currencies) => ({type: CURRENCY_FETCHED, currencies})
 
 
 function fetchContext (dispatch) {
     resource.Context.get().then(resp => {
         dispatch(updateContext(resp.data))
-    }).catch(() => {
-        dispatch(toggleContextFetch(false))
     })
 }
 
 export const getContextThunkCreator = () => {
     return (dispatch) => {
-        dispatch(toggleContextFetch(true))
         fetchContext(dispatch)
     }
 }
@@ -43,18 +42,36 @@ export const getLogoutThunkCreator = () => {
     }
 }
 
+export const getCurrenciesThunkCreator = () => {
+    return (dispatch) => {
+        resource.Currency.get().then(resp => {
+            dispatch(updateCurrency(resp.data))
+        })
+    }
+}
+
+export const updateCurrencyCreator = (data) => {
+    return (dispatch) => {
+        if (data.id)
+            resource.Context.patch(data).then(() => dispatch(updateContext(data)))
+        else
+            dispatch(updateContext(data))
+    }
+}
+
 
 export default function contextReducer(state = {status: 0, id: null}, action) {
+    let currency = DEFAULT_CURRENCY_ID
     switch (action.type) {
-    case IS_CONTEXT_FETCHING:
+    case CONTEXT_UPDATED:
+        currency = (action.data && action.data.currency) || localStorage.getItem('currency')
+        if (!currency)
+            currency = DEFAULT_CURRENCY_ID
+        localStorage.setItem('currency', currency)
         return {
             ...state,
-            status: action.fetching ? 0: 1
-        }
-    case CONTEXT_UPDATED:
-        return {
             status: 1,
-            ...action,
+            currency: currency,
             id: action.data && action.data.id
         }
     case LOGIN_FAIL:
@@ -62,6 +79,12 @@ export default function contextReducer(state = {status: 0, id: null}, action) {
             ...state,
             status: 1,
             errors: action.errors
+        }
+    case CURRENCY_FETCHED:
+        window.currencies = action.currencies
+        return {
+            ...state,
+            currencies: action.currencies,
         }
     }
     return state

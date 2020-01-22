@@ -4,45 +4,53 @@ const apiUrl = window.apiUrl || '/api/'
 
 export default {
     Context: {
-        get(data) {
-            return axios.get(apiUrl + 'common/context', data)
+        get () {
+            return axios.get(apiUrl + 'common/context')
+        },
+        patch (data) {
+            return axios.patch(apiUrl + 'common/context', data)
         }
     },
     Login: {
-        post(data) {
+        post (data) {
             return axios.post(apiUrl + 'common/login', data)
         }
     },
     Logout: {
-        post(data) {
+        post (data) {
             return axios.post(apiUrl + 'common/logout', data)
         }
     },
     Registration: {
-        post(data) {
+        post (data) {
             return axios.post(apiUrl + 'common/registration', data)
         }
     },
     Product: {
-        get(data) {
+        get (data) {
             const slug = data && data.slug ? data.slug + '/' : ''
             return axios.get(apiUrl + 'shop/product/' + slug)
         }
     },
     Customer: {
-        get() {
+        get () {
             return axios.get(apiUrl + 'shop/customer/')
         },
-        post() {
+        post () {
             return axios.post(apiUrl + 'shop/customer/')
         }
     },
     Order: {
-        get() {
+        get () {
             return axios.get(apiUrl + 'shop/order/')
         },
-        post() {
-            return axios.post(apiUrl + 'shop/order/')
+        post (data) {
+            return axios.post(apiUrl + 'shop/order/', data)
+        }
+    },
+    Currency: {
+        get () {
+            return axios.get(apiUrl + 'catalogue/currency')
         }
     }
 }

@@ -9,7 +9,7 @@ function NavBtn(props) {
     let count = props.cartProducts.reduce((s, item) => s + item[1] - 0, 0)
     return (
         <li className="cart-link">
-            <Link to="/checkout" className="cart">
+            <Link to="/cart" className="cart">
                 <span>Cart</span>
                 <span className="cart-badge">{count}</span>
             </Link>
