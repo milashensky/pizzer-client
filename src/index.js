@@ -5,6 +5,7 @@ import { Provider } from 'react-redux'
 import App from './App'
 import reduxStore from '@/redux'
 import miniToastr from 'mini-toastr'
+import 'react-responsive-carousel/lib/styles/carousel.min.css'
 import './styles/index.css'
 import 'styles/forms.css'
 

@@ -26,6 +26,8 @@
 .card .description {
     position: absolute;
     bottom: 0px;
+    left: 0px;
+    right: 0px;
     background-color: var(--overlay);
     width: 100%;
     padding: 20px 30px;

@@ -1,10 +1,25 @@
 .product-details {
-    /* width: 100vw; */
+    display: flex;
+    flex-flow: row nowrap;
 }
-.product-details .preview {
-    height: 70vh;
+.product-details .description {
+    margin: 10px;
+    min-width: 400px;
+    display: flex;
+    flex-direction: column;
 }
-.product-details .preview > div > div,
-.product-details .preview > div {
-    height: 100%;
+.product-details .description .btn {
+    max-width: 250px
+}
+.product-details .description p {
+    white-space: pre-wrap;
+}
+.product-details .description h4 {
+    color: var(--main)
+}
+
+@media (max-width: 890px) {
+    .product-details {
+        flex-flow: column wrap;
+    }
 }

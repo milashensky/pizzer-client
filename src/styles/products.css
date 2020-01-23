@@ -1,0 +1,79 @@
+.products-page {
+    flex: 1;
+}
+.products-page .slide-description {
+    top: 50%;
+    right: 20px;
+    position: absolute;
+    transform: translateY(-50%);
+    z-index: 20;
+}
+.products-page .slide-description a {
+    color: var(--main);
+    text-decoration: none;
+}
+.products-page .slide-1::after,
+.products-page .slide-2::after,
+.products-page .slide-3::after {
+    content: '';
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    background-color: var(--slight-overlay);
+    z-index: 10
+}
+.products-page .slide-description h1,
+.products-page .slide-description h2,
+.products-page .slide-description h3 {
+    text-transform: uppercase;
+    margin: 0px;
+}
+.products-page .slide-description {
+    right: 10px;
+    opacity: 0;
+    transition: all .3s ease;
+}
+.products-page .slide.selected .slide-description {
+    opacity: 1
+}
+.products-page .slide-2 .slide-description {
+    left: 20px;
+    right: auto;
+}
+.products-page .slide-1 .slide-description h3 {
+    font-size: 24px;
+}
+.products-page .slide-1 .slide-description h2 {
+    font-size: 48px;
+}
+.products-page .slide-description h1 {
+    color: var(--main);
+    font-size: 80px;
+}
+.products-page .slide-2 .slide-description h3 {
+    font-size: 25px;
+}
+.products-page .slide-2 .slide-description h2 {
+    font-size: 26px;
+}
+.products-page .slide-3 .slide-description h3 {
+    font-size: 38px;
+}
+.products-page .slide-3 .slide-description h2 {
+    font-size: 39px;
+}
+@media (max-width: 540px) {
+    .products-page .slide-description {
+        left: 5px;
+        transform-origin: left;
+        right: auto;
+        transform: scale(0.7) translateY(-50%);
+    }
+}
+@media (max-width: 370px) {
+    .products-page .slide-description {
+        transform: scale(0.5) translateY(-50%);
+    }
+}

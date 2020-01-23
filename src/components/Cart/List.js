@@ -24,10 +24,14 @@ function List (props) {
         totalPrice = products.reduce((sum, item) => sum + item.convertedPrice * item.quantity, 0)
         return products
     }
-    function removeProduct (e, productId) {
+    function changeQuantity (e, productId, n) {
         e.stopPropagation()
         e.preventDefault()
-        props.updateCreator(props.cartProducts.filter(x => x[0] != productId))
+        props.updateCreator(props.cartProducts.map(x => {
+            if (x[0] == productId)
+                x[1] += n
+            return x
+        }).filter(x => x[1] > 0))
         return 0
     }
     return (
@@ -35,15 +39,18 @@ function List (props) {
             <ul className="media-list">
                 {
                     buildProducts().map(product => (
-                        <Link to={ `/products/${product.slug}` } key={product.id} className="media">
+                        <a key={product.id} className="media">
                             <div className="media-img" style={{backgroundImage: `url(/resize/200x200/${product.preview})`}}/>
                             <div className="media-body">
                                 <h4 className="media-heading">{product.name}</h4>
-                                <span className="quantity">{product.quantity}</span>
+                                <div className="quantity-block">
+                                    <button type="button" className="more" onClick={(e) => changeQuantity(e, product.id, +1)}/>
+                                    <span className="quantity">{product.quantity}</span>
+                                    <button type="button" className="less" onClick={(e) => changeQuantity(e, product.id, -1)}/>
+                                </div>
                                 <span className="price">{buildPrice(product.quantity * product.convertedPrice)}</span>
-                                <button type="button" className="close" onClick={(e) => removeProduct(e, product.id)}/>
                             </div>
-                        </Link>
+                        </a>
                     ))
                 }
             </ul>

@@ -19,6 +19,12 @@
     justify-content: center;
     align-items: center;
     box-shadow: 0px 0px 20px 5px var(--shadow);
+    max-height: calc(100vh - 40px);
+    overflow: hidden;
+}
+.modal.big {
+    min-width: 450px;
+    max-width: 80vw;
 }
 .modal-overlay .modal:focus {
     outline: none;

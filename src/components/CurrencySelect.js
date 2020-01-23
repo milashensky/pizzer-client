@@ -13,12 +13,11 @@ function CurrencySelect (props) {
     }
     return (
         <li className="currency-select">
-            <a>{selectedCurrency.symbol}</a>
             <ul>
                 {
                     props.currencies.map(currency => (
                         <li onClick={() => setCurrency(currency)} key={currency.pk}>
-                            <a>{currency.symbol}</a>
+                            <a className={selectedCurrency.pk === currency.pk? 'active': ''}>{currency.symbol}</a>
                         </li>
                     ))
                 }

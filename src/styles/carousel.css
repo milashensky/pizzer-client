@@ -1,0 +1,21 @@
+.control-dots {
+    padding: 0;
+}
+*:not(.modal) .presentation {
+    height: 70vh;
+}
+.modal .presentation {
+    height: auto;
+    max-height: calc(100vh - 200px)
+}
+*:not(.modal) .presentation > div,
+*:not(.modal) .presentation .carousel,
+*:not(.modal) .presentation .carousel > div,
+*:not(.modal) .presentation .carousel > div > ul,
+*:not(.modal) .presentation .carousel > div > ul >
+*:not(.modal) .presentation .carousel > div > ul > li,
+*:not(.modal) .presentation .carousel > div > ul > li > div,
+*:not(.modal) .presentation img {
+    height: 100%;
+    object-fit: cover;
+}

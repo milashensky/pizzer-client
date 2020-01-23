@@ -7,10 +7,14 @@ import 'styles/cart-link.css'
 
 function AddBtn (props) {
     const product = props.product
+    function addOne (e) {
+        e.stopPropagation()
+        props.addToCart(product.id, 1)
+    }
     return (
-        <a onClick={() => props.addToCart(product.id, 1)} className="btn">
+        <span onClick={addOne} className="btn">
             Add to cart
-        </a>
+        </span>
     )
 }
 AddBtn.propTypes = {

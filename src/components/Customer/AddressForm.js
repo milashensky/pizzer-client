@@ -4,32 +4,31 @@ import { connect } from 'react-redux'
 import { getAddressThunkCreator } from '@/redux/profileReducers'
 
 
-class Form extends React.Component {
-    componentDidMount () {
-        this.props.getAddress()
+let user = null
+function Form (props) {
+    if (user != props.user) {
+        user = props.user
+        props.getAddress()
     }
-    render () {
-        let errors = this.props.errors
-        return (
-            <div>
-                <h3>{this.props.title}</h3>
+    return (
+        <div>
+            <h3>{props.title}</h3>
+            <div className="form-group">
+                <input placeholder="Enter your address" name="address" type="text" className={props.errors.address ? 'invalid' : ''} defaultValue={props.address.address}/>
+                {props.errors.address}
+            </div>
+            <div className="inline">
                 <div className="form-group">
-                    <input placeholder="Enter your address" name="address" type="text" className={errors.address ? 'invalid' : ''} defaultValue={this.props.address.address}/>
-                    {errors.address}
+                    <input placeholder="House" name="house" type="text" className={props.errors.house ? 'invalid' : ''} defaultValue={props.address.house}/>
+                    {props.errors.house}
                 </div>
-                <div className="inline">
-                    <div className="form-group">
-                        <input placeholder="House" name="house" type="text" className={errors.house ? 'invalid' : ''} defaultValue={this.props.address.house}/>
-                        {errors.house}
-                    </div>
-                    <div className="form-group">
-                        <input placeholder="Apt #" name="appartaments" type="text" className={errors.appartaments ? 'invalid' : ''} defaultValue={this.props.address.appartaments}/>
-                        {errors.appartaments}
-                    </div>
+                <div className="form-group">
+                    <input placeholder="Apt #" name="appartaments" type="text" className={props.errors.appartaments ? 'invalid' : ''} defaultValue={props.address.appartaments}/>
+                    {props.errors.appartaments}
                 </div>
             </div>
-        )
-    }
+        </div>
+    )
 }
 Form.propTypes = {
     title: PropTypes.string,
@@ -38,6 +37,7 @@ Form.propTypes = {
 
 
 const mapStoreToProps = (state) => ({
-    address: state.profile.address
+    address: state.profile.address,
+    user: state.context.id
 })
 export default connect (mapStoreToProps, {getAddress: getAddressThunkCreator})(Form)

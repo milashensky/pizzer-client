@@ -17,7 +17,7 @@ export default function Modal (props) {
             appElement={document.querySelector('#app')}
             shouldCloseOnOverlayClick={true}
             shouldCloseOnEsc={true}
-            className="modal"
+            className={props.big ? 'big modal' : 'modal'}
             overlayClassName="modal-overlay">
             <a onClick={close} className="close"/>
             {props.children}

@@ -42,6 +42,11 @@ export default {
             return axios.get(apiUrl + 'shop/product/' + slug)
         }
     },
+    Category: {
+        get() {
+            return axios.get(apiUrl + 'shop/category/')
+        }
+    },
     Customer: {
         get() {
             return axios.get(apiUrl + 'common/customer/')

@@ -1,6 +1,6 @@
 .nav {
     display: flex;
-    flex-flow: row nowrap;
+    flex-flow: row wrap;
     width: 100%;
     background-color: var(--overlay);
     color: var(--white);
@@ -12,12 +12,20 @@
 }
 .nav-links {
     display: flex;
-    flex-flow: row nowrap;
-    width: 100%;
     justify-content: flex-end;
     list-style: none;
     padding: 0;
     margin: 0;
+    position: absolute;
+    width: 100%;
+    flex-flow: column nowrap;
+    pointer-events: none;
+    opacity: 0;
+    box-shadow: 0 8px 8px 0 var(--shadow);
+    background-color: var(--overlay);
+    top: -250px;
+    transform: translateY(-100%);
+    transition: all .3s ease;
 }
 .nav li {
     display: flex;
@@ -36,13 +44,25 @@
     background-color: var(--white-hovered);
 }
 .nav .brand {
-    margin-right: auto;
+    order: 1;
+    position: relative;
+    z-index: 70
+}
+.nav .brand > div {
+    position: absolute;
+    left: 0;
+    top: 10px;
+}
+
+.nav .cart-link {
+    order: 2;
 }
 .burger-btn {
+    order: 0;
     position: relative;
     padding: 20px 15px;
     width: 65px;
-    display: none;
+    display: block;
 }
 .burger-btn span::after,
 .burger-btn span::before,
@@ -79,35 +99,13 @@
     transform: rotate(45deg);
     top: calc(50% - 2px);
 }
-@media (max-width: 480px) {
-    .nav {
-        flex-wrap: wrap;
-        position: relative;
-        z-index: 100;
-    }
-    .burger-btn {
-        display: block;
-    }
-    .nav-links {
-        position: absolute;
-        width: 100%;
-        flex-flow: column nowrap;
-        transform: translateY(-100%);
-        pointer-events: none;
-        opacity: 0;
-        box-shadow: 0 8px 8px 0 var(--shadow);
-        background-color: var(--overlay);
-        top: -250px;
-        transition: all .3s ease;
-    }
-    .nav-links a {
-        width: 100%;
-    }
-    .burger-btn.active ~ .nav-links {
-        top: 58px;
-        z-index: 50;
-        transform: translateY(0px);
-        pointer-events: all;
-        opacity: 1;
-    }
+.nav-links a {
+    width: 100%;
+}
+.burger-btn.active ~ .nav-links {
+    top: 100%;
+    z-index: 50;
+    transform: translateY(0px);
+    pointer-events: all;
+    opacity: 1;
 }

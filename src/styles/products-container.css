@@ -1,0 +1,11 @@
+.products-container {
+    display: flex;
+    flex-flow: row wrap;
+    max-width: 1150px;
+    margin: 0 auto;
+    justify-content: space-around;
+}
+
+.products-container .card {
+    margin: 10px;
+}

@@ -49,24 +49,33 @@
     margin: 5px 0px 25px;
 }
 
-.page-checkout .checkout-list  .price {
+.page-checkout .checkout-list .cart-dropdown .price {
     color: var(--main);
-    margin-left: 20px;
+    margin-top: 10px;
     font-weight: 600;
 }
-
-.page-checkout .checkout-list  .quantity {
-    width: 20px;
-    height: 20px;
+.page-checkout .checkout-list .cart-dropdown .quantity {
     background: var(--white-active);
     color: var(--text);
     line-height: 20px;
+    display: flex;
     padding: 2px 5px;
     text-align: center;
 }
-
-.page-checkout .checkout-list  button.close {
-    -webkit-appearance: none;
+.page-checkout .checkout-list .quantity-block {
+    display: flex;
+    flex-flow: row nowrap;
+}
+.page-checkout .checkout-list button.more:hover,
+.page-checkout .checkout-list button.less:hover {
+    opacity: .8;
+}
+.page-checkout .checkout-list button.less {
+    margin-left: 10px;
+}
+.page-checkout .checkout-list button.more,
+.page-checkout .checkout-list button.less {
+    margin-right: 10px;
     padding: 0;
     cursor: pointer;
     background: 0 0;
@@ -75,28 +84,25 @@
     font-weight: 700;
     line-height: 1;
     color: var(--text);
-    text-shadow: 0 1px 0 var(--white);
+    text-shadow: 0 1px 0 var(--text);
     filter: alpha(opacity=20);
     opacity: .2;
-    position: absolute;
-    top: 50px;
-    right: 30px;
     width: 25px;
     height: 25px;
     border: 1px solid var(--text);
     border-radius: 50%;
 }
-.page-checkout .checkout-list  button.close::before,
-.page-checkout .checkout-list  button.close::after {
+.page-checkout .checkout-list button.less::before,
+.page-checkout .checkout-list button.more::before,
+.page-checkout .checkout-list button.more::after {
     content: "";
     position: absolute;
     height: 2px;
     background-color: var(--text);
     width: 10px;
-    transform: rotate(45deg);
 }
-.page-checkout .checkout-list  button.close::after {
-    transform: rotate(-45deg);
+.page-checkout .checkout-list button.more::after {
+    transform: rotate(90deg);
 }
 
 .page-checkout .checkout-list  .media {

@@ -159,3 +159,7 @@ input[type="radio"]~.checkmark {
     font-size: 0.8em;
     color: var(--error);
 }
+.form-container .btn,
+.form-container button {
+    max-width: 250px;
+}

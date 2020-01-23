@@ -4,6 +4,7 @@ import Login from 'pages/Login'
 import Modal from 'components/Modal'
 import CartBtn from 'components/Cart/NavBtn'
 import CurrencySelect from 'components/CurrencySelect'
+import Brand from 'components/Brand'
 import 'styles/nav.css'
 
 
@@ -55,13 +56,13 @@ function Nav (props) {
         ]
     return (
         <div className="nav">
-            <Link className="brand" to="/">Home</Link>
+            <Brand/>
+            <CartBtn/>
             <a className="burger-btn" onClick={toggle}>
                 <span/>
             </a>
             <ul className="nav-links">
                 <CurrencySelect/>
-                <CartBtn/>
                 {links}
             </ul>
         </div>

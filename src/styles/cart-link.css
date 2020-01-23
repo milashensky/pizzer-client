@@ -79,22 +79,31 @@
 
 .cart-link .cart-dropdown .price {
     color: var(--main);
-    margin-left: 20px;
+    margin-top: 10px;
     font-weight: 600;
 }
-
 .cart-link .cart-dropdown .quantity {
-    width: 20px;
-    height: 20px;
     background: var(--white-active);
     color: var(--text);
     line-height: 20px;
+    display: flex;
     padding: 2px 5px;
     text-align: center;
 }
-
-.cart-link button.close {
-    -webkit-appearance: none;
+.cart-link .quantity-block {
+    display: flex;
+    flex-flow: row nowrap;
+}
+.cart-link button.more:hover,
+.cart-link button.less:hover {
+    opacity: .8;
+}
+.cart-link button.less {
+    margin-left: 10px;
+}
+.cart-link button.more,
+.cart-link button.less {
+    margin-right: 10px;
     padding: 0;
     cursor: pointer;
     background: 0 0;
@@ -106,25 +115,22 @@
     text-shadow: 0 1px 0 var(--text);
     filter: alpha(opacity=20);
     opacity: .2;
-    position: absolute;
-    top: 50px;
-    right: 30px;
     width: 25px;
     height: 25px;
     border: 1px solid var(--text);
     border-radius: 50%;
 }
-.cart-link button.close::before,
-.cart-link button.close::after {
+.cart-link button.less::before,
+.cart-link button.more::before,
+.cart-link button.more::after {
     content: "";
     position: absolute;
     height: 2px;
     background-color: var(--text);
     width: 10px;
-    transform: rotate(45deg);
 }
-.cart-link button.close::after {
-    transform: rotate(-45deg);
+.cart-link button.more::after {
+    transform: rotate(90deg);
 }
 
 .cart-link .cart-dropdown .media {
@@ -176,7 +182,7 @@
     padding: 3px 5px;
     vertical-align: top;
     position: absolute;
-    right: 5px;
+    left: calc(50% + 10px);
     top: 34px;
     border-radius: 9px;
     font-weight: 700;
@@ -188,9 +194,4 @@
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-.cart-link .cart-badge {
-    right: auto;
-    left: 70px;
 }

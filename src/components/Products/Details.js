@@ -9,7 +9,7 @@ import Loader from 'components/Loader'
 import AddToCart from 'components/Cart/AddBtn'
 
 import 'styles/product-details.css'
-import 'react-responsive-carousel/lib/styles/carousel.min.css'
+import 'styles/carousel.css'
 
 
 class Details extends React.Component {
@@ -23,6 +23,7 @@ class Details extends React.Component {
             showArrows: false,
             showStatus: false,
             showThumbs: false,
+            infiniteLoop: true,
             autoPlay: true,
             dynamicHeight: false
         }
@@ -30,7 +31,7 @@ class Details extends React.Component {
             return (<Loader/>)
         return (
             <div className="product-details">
-                <div className="preview">
+                <div className="presentation">
                     <Carousel {...options}>
                         {
                             product.photos.map(photo =>
@@ -42,9 +43,9 @@ class Details extends React.Component {
                     </Carousel>
                 </div>
                 <div className="description">
-                    <p>{product.name}</p>
+                    <h3>{product.name}</h3>
                     <p>{product.description}</p>
-                    <p>{buildProductPrice(product)}</p>
+                    <h4>{buildProductPrice(product)}</h4>
                     <AddToCart product={product}/>
                 </div>
             </div>

@@ -16,6 +16,8 @@ import PasswordSettings from 'pages/Profile/PasswordSettings'
 import Orders from 'pages/Profile/Orders'
 import Loader from 'components/Loader'
 import Nav from 'components/Nav'
+import Footer from 'components/Footer'
+import About from 'pages/About'
 
 
 class App extends Component {
@@ -28,54 +30,56 @@ class App extends Component {
     render () {
         const props = this.props
         return (
-            <Router>
-                <div className="App">
-                    {
-                        props.fetched && props.currencies && props.currencies.length ?
-                            <div className="layout">
-                                <Nav user={props.user_id}/>
-                                <Switch>
-                                    <Route path="/" exact>
-                                        <Products/>
-                                    </Route>
-                                    <Route path="/products/:slug">
-                                        <Product/>
-                                    </Route>
-                                    <Route path="/cart">
-                                        <Checkout/>
-                                    </Route>
-                                    <Route path="/profile" exact
-                                        render={ () => props.user ?
-                                            <Profile/>
-                                            :<Redirect to={{pathname: '/', }}/>}
-                                    />
-                                    <Route path="/profile/password" exact
-                                        render={ () => props.user ?
-                                            <PasswordSettings/>
-                                            :<Redirect to={{pathname: '/', }}/>}
-                                    />
-                                    <Route path="/orders" exact
-                                        render={ () => props.user ?
-                                            <Orders/>
-                                            :<Redirect to={{pathname: '/', }}/>}
-                                    />
-                                    <Route path="/login" exact
-                                        render={() => !props.user_id ?
-                                            <Login/>
-                                            :<Redirect to={{pathname: '/'}}/>}
-                                    />
-                                    <Route path="/logout" exact
-                                        render={() => props.user_id ?
-                                            <Logout/>
-                                            :<Redirect to={{pathname: '/'}}/>}
-                                    />
-                                    <Redirect from='*' to='/' />
-                                </Switch>
-                            </div>
-                            :
-                            <Loader/>
-                    }
-                </div>
+            <Router onUpdate={() => window.scrollTo(0, 0)}>
+                {
+                    props.fetched && props.currencies && props.currencies.length ?
+                        <div className="layout">
+                            <Nav user={props.user_id}/>
+                            <Switch>
+                                <Route path="/" exact>
+                                    <Products/>
+                                </Route>
+                                <Route path="/products/:slug" exact>
+                                    <Product/>
+                                </Route>
+                                <Route path="/cart" exact>
+                                    <Checkout/>
+                                </Route>
+                                <Route path="/about" exact>
+                                    <About/>
+                                </Route>
+                                <Route path="/profile" exact
+                                    render={ () => props.user_id ?
+                                        <Profile/>
+                                        :<Redirect to={{pathname: '/', }}/>}
+                                />
+                                <Route path="/profile/password" exact
+                                    render={ () => props.user_id ?
+                                        <PasswordSettings/>
+                                        :<Redirect to={{pathname: '/', }}/>}
+                                />
+                                <Route path="/orders" exact
+                                    render={ () => props.user_id ?
+                                        <Orders/>
+                                        :<Redirect to={{pathname: '/', }}/>}
+                                />
+                                <Route path="/login" exact
+                                    render={() => !props.user_id ?
+                                        <Login/>
+                                        :<Redirect to={{pathname: '/'}}/>}
+                                />
+                                <Route path="/logout" exact
+                                    render={() => props.user_id ?
+                                        <Logout/>
+                                        :<Redirect to={{pathname: '/'}}/>}
+                                />
+                                <Redirect from='*' to='/' />
+                            </Switch>
+                        </div>
+                        :
+                        <Loader/>
+                }
+                <Footer user={props.user_id}/>
             </Router>
         )
     }

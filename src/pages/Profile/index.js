@@ -29,7 +29,7 @@ function Profile (props) {
         return renderErrors({...(formErrors[type] || {}), ...(props.errors[type] || {})})
     }
     return (
-        <div className="main profile">
+        <div className="main profile form-container">
             <h1>Profile settings</h1>
             <form onSubmit={(e) => submit(e, 'profile')} className="checkout-form" ref={e => forms['profile'] = e}>
                 <ProfileForm errors={getErrors('profile')} title="Presonal info"/>
