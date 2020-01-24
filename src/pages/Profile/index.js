@@ -43,7 +43,7 @@ function Profile (props) {
                 props.context.confirmed ?
                     <div className="my-1"/>
                     :<div className="user-unconfirmed">
-                        You need set password!
+                        You need to set a password!
                     </div>
             }
             <PasswordFormModal className="d-desktop"/>

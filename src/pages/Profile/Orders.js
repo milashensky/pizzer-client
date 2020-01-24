@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import Pagination from 'components/Pagination'
+import Empty from 'components/Cart/Empty'
 import { getOrdersThunkCreator } from '@/redux/orderReducers'
 import Order from 'components/Orders/Card'
 
@@ -35,9 +36,7 @@ class Orders extends React.Component {
                                 <Pagination total={props.total} page={this.state.page} perPage={PER_PAGE} setPage={(n) => this.setPage(n)}/>
                             </div>
                         </div>
-                        :<div className="my-1">
-                            No orders yet.
-                        </div>
+                        :<Empty/>
                 }
             </div>
         )
