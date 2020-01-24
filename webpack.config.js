@@ -1,6 +1,6 @@
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const path = require('path')
 const webpack = require('webpack')
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
@@ -42,6 +42,7 @@ module.exports = {
     },
     devtool: '#eval-source-map',
     plugins: [
+        new CleanWebpackPlugin(),
         new webpack.HotModuleReplacementPlugin(),
         new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
         new HtmlWebpackPlugin({
